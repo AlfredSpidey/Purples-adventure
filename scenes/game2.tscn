@@ -1,0 +1,511 @@
+[gd_scene load_steps=23 format=1]
+
+[ext_resource path="res://scripts/game2.gd" type="Script" id=1]
+[ext_resource path="res://tilesets/tileagrvai.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/Tiles/cloud1.png" type="Texture" id=3]
+[ext_resource path="res://assets/HaYuGQi.png" type="Texture" id=4]
+[ext_resource path="res://scenes/moeda.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ticoid.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/blocoDest.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/platMovel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/Botoes/esquerda0.png" type="Texture" id=9]
+[ext_resource path="res://assets/Botoes/esquerda1.png" type="Texture" id=10]
+[ext_resource path="res://assets/Botoes/direita0.png" type="Texture" id=11]
+[ext_resource path="res://assets/Botoes/direita1.png" type="Texture" id=12]
+[ext_resource path="res://assets/Botoes/cima0.png" type="Texture" id=13]
+[ext_resource path="res://assets/Botoes/cima1.png" type="Texture" id=14]
+[ext_resource path="res://assets/purplesface.png" type="Texture" id=15]
+[ext_resource path="res://fonts/font1000.fnt" type="BitmapFont" id=16]
+[ext_resource path="res://assets/hud_heartFull.png" type="Texture" id=17]
+[ext_resource path="res://scenes/pao.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/personagem.tscn" type="PackedScene" id=19]
+
+[sub_resource type="Curve2D" id=6]
+
+bake_interval = 5.0
+_data = {
+"points": Vector2Array( 0, 0, 0, 0, 9.73914, -0.664124, 0, 0, 0, 0, -281.086, -0.664124 )
+}
+
+[sub_resource type="StyleBoxFlat" id=7]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.172552, 0.253906, 0.0396729, 1 )
+light_color = Color( 0.556863, 0.682353, 0.156863, 1 )
+dark_color = Color( 0.309561, 0.566406, 0.172577, 1 )
+border_size = 10
+border_blend = true
+draw_bg = false
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 35, 700 )
+
+[node name="game" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+
+[node name="spawn_point" type="Position2D" parent="."]
+
+transform/pos = Vector2( 105, -105 )
+
+[node name="spawn_time" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="dead_camera" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = false
+current = false
+zoom = Vector2( 1, 1 )
+limit/left = 0
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 900
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="tileMap" type="TileMap" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 2
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524295, 0, 524296, 0, 524297, 0, 524298, 0, 524299, 0, 524300, 0, 524301, 0 )
+
+[node name="parallax" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+
+[node name="layer" type="ParallaxLayer" parent="parallax"]
+
+motion/scale = Vector2( 0.5, 1 )
+motion/offset = Vector2( 0, 0 )
+motion/mirroring = Vector2( 0, 0 )
+
+[node name="Sprite" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 257.211, 74.7027 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Sprite1" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 1035.48, 74.7027 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 550.109, 169.546 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Sprite3" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 1267.01, 177.915 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Sprite4" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 1610.12, 79.4922 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Sprite5" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 1830.49, 197.441 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Sprite6" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 2159.66, 77.4922 )
+transform/scale = Vector2( 1.009, 1.06216 )
+texture = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 834.851, 87.2798 )
+z/z = -3
+texture = ExtResource( 4 )
+
+[node name="Background1" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 2732.18, 87.2798 )
+z/z = -3
+texture = ExtResource( 4 )
+
+[node name="Background2" type="Sprite" parent="parallax/layer"]
+
+transform/pos = Vector2( 4448, 87.2798 )
+z/z = -3
+texture = ExtResource( 4 )
+
+[node name="moedas" type="Node2D" parent="."]
+
+[node name="moeda" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 105, 35 )
+
+[node name="moeda1" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 385, 175 )
+
+[node name="moeda17" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 385, 35 )
+
+[node name="moeda18" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 385, 35 )
+
+[node name="moeda2" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 105, 455 )
+
+[node name="moeda3" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 175, 455 )
+
+[node name="moeda5" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1085, 175 )
+
+[node name="moeda6" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1155, 175 )
+
+[node name="moeda7" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1225, 175 )
+
+[node name="moeda8" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1295, 175 )
+
+[node name="moeda9" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1645, 105 )
+
+[node name="moeda10" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1715, 105 )
+
+[node name="moeda11" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1995, 315 )
+
+[node name="moeda12" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 3115, 105 )
+
+[node name="moeda13" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 3185, 105 )
+
+[node name="moeda19" parent="moedas" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 4445, 245 )
+
+[node name="inimigos" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="ticoid" parent="inimigos" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 729.334, 463.502 )
+curve = SubResource( 6 )
+
+[node name="ticoid1" parent="inimigos" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 1978.97, 463.502 )
+curve = SubResource( 6 )
+
+[node name="ticoid2" parent="inimigos" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 4296.48, 463.502 )
+curve = SubResource( 6 )
+
+[node name="blocos" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="blocoDest" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 385, 35 )
+
+[node name="blocoDest1" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 576.414, 315 )
+
+[node name="blocoDest2" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 645.306, 315 )
+
+[node name="blocoDest3" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 679.849, 315 )
+
+[node name="blocoDest4" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 611.345, 315 )
+
+[node name="blocoDest5" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 1680.07, 245 )
+
+[node name="blocoDest6" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 1715, 245 )
+
+[node name="blocoDest8" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 4410.07, 245 )
+
+[node name="blocoDest9" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 4445, 245 )
+
+[node name="blocoDest10" parent="blocos" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 4479.93, 245 )
+
+[node name="plataformas" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="platMovel" parent="plataformas" instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 2765, 455 )
+
+[node name="canvasLayer" type="CanvasLayer" parent="."]
+
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="controles" type="Node2D" parent="canvasLayer"]
+
+[node name="touchLeft" type="TouchScreenButton" parent="canvasLayer/controles"]
+
+transform/pos = Vector2( 35, 595 )
+transform/scale = Vector2( 3.5, 3.5 )
+normal = ExtResource( 9 )
+pressed = ExtResource( 10 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="touchRight" type="TouchScreenButton" parent="canvasLayer/controles"]
+
+transform/pos = Vector2( 175, 595 )
+transform/scale = Vector2( 3.5, 3.5 )
+normal = ExtResource( 11 )
+pressed = ExtResource( 12 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="touchUp" type="TouchScreenButton" parent="canvasLayer/controles"]
+
+transform/pos = Vector2( 1085, 595 )
+transform/scale = Vector2( 3.5, 3.5 )
+normal = ExtResource( 13 )
+pressed = ExtResource( 14 )
+bitmask = null
+shape = null
+shape_centered = true
+shape_visible = true
+passby_press = false
+action = ""
+visibility_mode = 0
+
+[node name="Panel" type="Panel" parent="canvasLayer/controles"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1280.0
+margin/bottom = 100.0
+custom_styles/panel = SubResource( 7 )
+
+[node name="moeda" type="Sprite" parent="canvasLayer/controles/Panel"]
+
+transform/pos = Vector2( 58.582, 48.2884 )
+transform/scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 15 )
+
+[node name="moedas" type="Label" parent="canvasLayer/controles/Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 111.0
+margin/top = 19.0
+margin/right = 201.0
+margin/bottom = 126.0
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 3
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="heart3" type="TextureFrame" parent="canvasLayer/controles/Panel"]
+
+rect/scale = Vector2( 0.2, 0.2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1028.0
+margin/top = 27.0
+margin/right = 1081.0
+margin/bottom = 72.0
+texture = ExtResource( 17 )
+stretch_mode = 0
+
+[node name="heart4" type="TextureFrame" parent="canvasLayer/controles/Panel"]
+
+rect/scale = Vector2( 0.2, 0.2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1109.0
+margin/top = 27.0
+margin/right = 1162.0
+margin/bottom = 72.0
+texture = ExtResource( 17 )
+stretch_mode = 0
+
+[node name="heart5" type="TextureFrame" parent="canvasLayer/controles/Panel"]
+
+rect/scale = Vector2( 0.2, 0.2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1183.0
+margin/top = 27.0
+margin/right = 1236.0
+margin/bottom = 72.0
+texture = ExtResource( 17 )
+stretch_mode = 0
+
+[node name="time" type="Label" parent="canvasLayer/controles/Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 520.0
+margin/top = 22.0
+margin/right = 700.0
+margin/bottom = 129.0
+custom_fonts/font = ExtResource( 16 )
+custom_colors/font_color = Color( 1, 0.866667, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 3
+text = "30"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="fim" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 8 )
+shapes/0/transform = Matrix32( 0.5, 0, 0, 1, 4954, 105 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 0
+
+[node name="shape" type="CollisionShape2D" parent="fim"]
+
+transform/pos = Vector2( 4954, 105 )
+transform/scale = Vector2( 0.5, 1 )
+shape = SubResource( 8 )
+trigger = false
+_update_shape_index = 0
+
+[node name="gameTime" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="danos" type="Node2D" parent="."]
+
+[node name="pao" parent="danos" instance=ExtResource( 18 )]
+
+transform/pos = Vector2( 622.547, 254.472 )
+
+[node name="personagem" parent="." instance=ExtResource( 19 )]
+
+[connection signal="timeout" from="spawn_time" to="." method="_on_spawn_time_timeout"]
+
+
